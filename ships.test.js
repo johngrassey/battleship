@@ -4,7 +4,15 @@ describe("Ship", () => {
   let ship;
 
   beforeEach(() => {
-    ship = new Ship(3);
+    ship = new Ship("ship", 3);
+  });
+
+  test("ship has a name", () => {
+    expect(ship.name).toBe("ship");
+  });
+
+  test("ship has a length", () => {
+    expect(ship.length).toBe(3);
   });
 
   test("increments the hit count", () => {

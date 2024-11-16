@@ -4,7 +4,7 @@ describe("Boardgame", () => {
   let board;
 
   beforeEach(() => {
-    board = new Board(3);
+    board = new Board();
   });
 
   test("returns the board", () => {
@@ -23,9 +23,20 @@ describe("Boardgame", () => {
   });
 
   test("places ship horizontally on the board", () => {
-    board.placeShip(0, 0, 3, "horizontal");
+    board.placeShip(0, 0, board.ships[0], "horizontal");
     expect(board.getBoard()).toEqual([
-      ["S", "S", "S", "", "", "", "", "", "", ""],
+      [
+        "carrier",
+        "carrier",
+        "carrier",
+        "carrier",
+        "carrier",
+        "",
+        "",
+        "",
+        "",
+        "",
+      ],
       ["", "", "", "", "", "", "", "", "", ""],
       ["", "", "", "", "", "", "", "", "", ""],
       ["", "", "", "", "", "", "", "", "", ""],
@@ -39,13 +50,13 @@ describe("Boardgame", () => {
   });
 
   test("places ship vertically on the board", () => {
-    board.placeShip(0, 0, 3, "vertical");
+    board.placeShip(0, 0, board.ships[0], "vertical");
     expect(board.getBoard()).toEqual([
-      ["S", "", "", "", "", "", "", "", "", ""],
-      ["S", "", "", "", "", "", "", "", "", ""],
-      ["S", "", "", "", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", "", "", "", ""],
+      ["carrier", "", "", "", "", "", "", "", "", ""],
+      ["carrier", "", "", "", "", "", "", "", "", ""],
+      ["carrier", "", "", "", "", "", "", "", "", ""],
+      ["carrier", "", "", "", "", "", "", "", "", ""],
+      ["carrier", "", "", "", "", "", "", "", "", ""],
       ["", "", "", "", "", "", "", "", "", ""],
       ["", "", "", "", "", "", "", "", "", ""],
       ["", "", "", "", "", "", "", "", "", ""],
@@ -71,7 +82,7 @@ describe("Boardgame", () => {
   });
 
   test("attack ship on the board", () => {
-    board.placeShip(0, 0, 3, "horizontal");
+    board.placeShip(0, 0, board.ships[0], "horizontal");
     board.receiveAttack(0, 0);
     expect(board.getBoard()[0][0]).toEqual("X");
   });
