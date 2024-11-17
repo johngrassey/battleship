@@ -40,3 +40,19 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+/* Main Styles */
+
+body {
+  background-color: #474e5b;
+  color: #fff;
+}
+
+.header {
+  background-color: #f5f5f5;
+  padding: 15px 35px;
+}
+
+h1 {
+  color: #1c242c;
+}
