@@ -50,6 +50,15 @@ class Board {
       this.board[x][y] = "X";
     }
   }
+
+  allSunk() {
+    for (let ship in this.ships) {
+      if (!this.ships[ship].isSunk()) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 export { Board };
