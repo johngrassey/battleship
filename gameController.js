@@ -14,7 +14,7 @@ class gameController {
       this.activePlayer === this.player1 ? this.player2 : this.player1;
   }
 
-  *populateBoard(player1) {
+  populateBoard(player1) {
     player1.board.placeShip(0, 0, player1.board.ships.carrier, "horizontal");
     player1.board.placeShip(1, 0, player1.board.ships.battleship, "horizontal");
     player1.board.placeShip(2, 0, player1.board.ships.cruiser, "horizontal");
@@ -22,7 +22,7 @@ class gameController {
     player1.board.placeShip(4, 0, player1.board.ships.destroyer, "horizontal");
   }
 
-  *populateBoard(player2) {
+  populateBoard(player2) {
     player2.board.placeShip(0, 0, player2.board.ships.carrier, "vertical");
     player2.board.placeShip(0, 1, player2.board.ships.battleship, "vertical");
     player2.board.placeShip(0, 2, player2.board.ships.cruiser, "vertical");
@@ -30,4 +30,5 @@ class gameController {
     player2.board.placeShip(0, 4, player2.board.ships.destroyer, "vertical");
   }
 }
+
 export { gameController };
