@@ -14,13 +14,13 @@ class Board {
       ["", "", "", "", "", "", "", "", "", ""],
       ["", "", "", "", "", "", "", "", "", ""],
     ];
-    this.ships = [
-      new Ship("carrier", 5),
-      new Ship("battleship", 4),
-      new Ship("cruiser", 3),
-      new Ship("submarine", 3),
-      new Ship("destroyer", 2),
-    ];
+    this.ships = {
+      carrier: new Ship("carrier", 5),
+      battleship: new Ship("battleship", 4),
+      cruiser: new Ship("cruiser", 3),
+      submarine: new Ship("submarine", 3),
+      destroyer: new Ship("destroyer", 2),
+    };
   }
 
   getBoard() {
@@ -42,10 +42,9 @@ class Board {
   }
 
   receiveAttack(x, y) {
-    if (this.board[x][y] === "") {
+    let value = this.board[x][y];
+    if (value === "") {
       this.board[x][y] = "O";
-    } else if (this.board[x][y].length > 1) {
-      this.board[x][y] = "X";
     }
   }
 }

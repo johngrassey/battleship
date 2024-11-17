@@ -1,10 +1,13 @@
 import { Board } from "./board";
+import { Ship } from "./ships";
 
 describe("Boardgame", () => {
   let board;
+  let ship;
 
   beforeEach(() => {
     board = new Board();
+    ship = { carrier: new Ship("carrier", 5) };
   });
 
   test("returns the board", () => {
@@ -23,7 +26,7 @@ describe("Boardgame", () => {
   });
 
   test("places ship horizontally on the board", () => {
-    board.placeShip(0, 0, board.ships[0], "horizontal");
+    board.placeShip(0, 0, ship.carrier, "horizontal");
     expect(board.getBoard()).toEqual([
       [
         "carrier",
@@ -50,7 +53,7 @@ describe("Boardgame", () => {
   });
 
   test("places ship vertically on the board", () => {
-    board.placeShip(0, 0, board.ships[0], "vertical");
+    board.placeShip(0, 0, ship.carrier, "vertical");
     expect(board.getBoard()).toEqual([
       ["carrier", "", "", "", "", "", "", "", "", ""],
       ["carrier", "", "", "", "", "", "", "", "", ""],

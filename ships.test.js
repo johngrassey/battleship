@@ -4,11 +4,11 @@ describe("Ship", () => {
   let ship;
 
   beforeEach(() => {
-    ship = new Ship("ship", 3);
+    ship = new Ship("cruiser", 3);
   });
 
   test("ship has a name", () => {
-    expect(ship.name).toBe("ship");
+    expect(ship.name).toBe("cruiser");
   });
 
   test("ship has a length", () => {
