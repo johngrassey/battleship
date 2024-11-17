@@ -85,7 +85,7 @@ describe("Boardgame", () => {
   });
 
   test("attack ship on the board", () => {
-    board.placeShip(0, 0, board.ships[0], "horizontal");
+    board.placeShip(0, 0, ship.carrier, "horizontal");
     board.receiveAttack(0, 0);
     expect(board.getBoard()[0][0]).toEqual("X");
   });

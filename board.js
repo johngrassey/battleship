@@ -45,6 +45,9 @@ class Board {
     let value = this.board[x][y];
     if (value === "") {
       this.board[x][y] = "O";
+    } else if (value in this.ships) {
+      this.ships[value].shipHit();
+      this.board[x][y] = "X";
     }
   }
 }
