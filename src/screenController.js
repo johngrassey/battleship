@@ -7,7 +7,8 @@ class screenController {
 
   updatePlayerBoard() {
     const board = this.gameController.activePlayer.board.getBoard();
-    const boardDiv = document.querySelector("#playerboard");
+    const boardDiv = document.querySelector("#playerboard .grid");
+    boardDiv.innerHTML = "";
     board.forEach((row) => {
       const rowDiv = document.createElement("div");
       rowDiv.classList.add("row");
@@ -28,11 +29,11 @@ class screenController {
 
   updateOppBoard() {
     const board = this.gameController.inactivePlayer.board.getBoard();
-    const boardDiv = document.querySelector("#oppboard");
-    board.forEach((row) => {
+    const boardDiv = document.querySelector("#oppboard .grid");
+    board.forEach((row, rowIndex) => {
       const rowDiv = document.createElement("div");
       rowDiv.classList.add("row");
-      row.forEach((cell) => {
+      row.forEach((cell, cellIndex) => {
         const cellDiv = document.createElement("div");
         cellDiv.classList.add("cell");
         if (cell.length > 1) {
@@ -41,6 +42,7 @@ class screenController {
         } else {
           cellDiv.textContent = cell;
         }
+        cellDiv.setAttribute("id", `cell-${rowIndex}-${cellIndex}`);
         rowDiv.appendChild(cellDiv);
       });
       boardDiv.appendChild(rowDiv);
