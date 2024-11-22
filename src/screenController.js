@@ -30,6 +30,7 @@ class screenController {
   updateOppBoard() {
     const board = this.gameController.inactivePlayer.board.getBoard();
     const boardDiv = document.querySelector("#oppboard .grid");
+    boardDiv.innerHTML = "";
     board.forEach((row, rowIndex) => {
       const rowDiv = document.createElement("div");
       rowDiv.classList.add("row");
@@ -42,11 +43,19 @@ class screenController {
         } else {
           cellDiv.textContent = cell;
         }
-        cellDiv.setAttribute("id", `cell-${rowIndex}-${cellIndex}`);
+        cellDiv.addEventListener("click", () => {
+          this.playTurn(rowIndex, cellIndex);
+        });
         rowDiv.appendChild(cellDiv);
       });
       boardDiv.appendChild(rowDiv);
     });
+  }
+
+  playTurn(x, y) {
+    this.gameController.gameTurn(x, y);
+    this.updatePlayerBoard();
+    this.updateOppBoard();
   }
 
   startGame() {

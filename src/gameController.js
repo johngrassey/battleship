@@ -17,6 +17,14 @@ class gameController {
     ];
   }
 
+  gameTurn(x, y) {
+    this.inactivePlayer.board.receiveAttack(x, y);
+    if (this.activePlayer.board.allSunk()) {
+      console.log("Game Over");
+    }
+    this.switchPlayer();
+  }
+
   populatePlayerOneBoard(player1) {
     player1.board.placeShip(0, 0, player1.board.ships.carrier, "horizontal");
     player1.board.placeShip(1, 0, player1.board.ships.battleship, "horizontal");
