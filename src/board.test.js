@@ -58,6 +58,16 @@ describe("Boardgame", () => {
     ]);
   });
 
+  test("places ship horizontally marks the ship as placed", () => {
+    board.placeShip(0, 0, board.ships.carrier, "horizontal");
+    expect(board.ships.carrier.placed).toEqual(true);
+  });
+
+  test("places ship vertically marks the ship as placed", () => {
+    board.placeShip(0, 0, board.ships.carrier, "vertical");
+    expect(board.ships.carrier.placed).toEqual(true);
+  });
+
   test("places ship out of bounds horizontally on the board", () => {
     board.placeShip(0, 9, board.ships.carrier, "horizontal");
     expect(board.getPlayerBoard()).toEqual([
@@ -118,7 +128,7 @@ describe("Boardgame", () => {
     ]);
   });
 
-  test("places on another ship", () => {
+  test("places vertically on another ship", () => {
     board.placeShip(0, 2, board.ships.battleship, "horizontal");
     board.placeShip(0, 2, board.ships.carrier, "vertical");
     expect(board.getPlayerBoard()).toEqual([

@@ -70,6 +70,7 @@ class Board {
         this.board[x + i][y] = ship.name;
       }
     }
+    ship.placed = true;
   }
 
   receiveAttack(x, y) {
