@@ -54,29 +54,46 @@ class screenController {
     this.updateOppBoard();
     this.updatePlayerBoard();
     this.clearMessage();
+    this.closeModal();
   }
 
   updateMessage(message) {
-    const nextTurnBtn = document.querySelector("#nextturn");
+    const nextTurnBtn = document.querySelector("#endturn");
     const messageDiv = document.querySelector("#message");
+    const passDialog = document.querySelector("#passturn");
     messageDiv.innerHTML = "";
     messageDiv.textContent = message;
     nextTurnBtn.addEventListener("click", () => {
-      this.passTurn();
+      passDialog.showModal();
     });
     nextTurnBtn.style.display = "block";
   }
 
   clearMessage() {
     const messageDiv = document.querySelector("#message");
-    const nextTurnBtn = document.querySelector("#nextturn");
+    const nextTurnBtn = document.querySelector("#endturn");
     messageDiv.innerHTML = "";
     nextTurnBtn.style.display = "none";
+  }
+
+  closeModal() {
+    const passDialog = document.querySelector("#passturn");
+    passDialog.close();
+  }
+
+  renderScreen() {
+    const passDialog = document.querySelector("#passturn");
+    const passDialogBtn = document.querySelector("#passturnbtn");
+    passDialogBtn.addEventListener("click", () => {
+      this.passTurn();
+    });
+    passDialog.close();
   }
 
   startGame() {
     this.gameController.populatePlayerOneBoard(this.gameController.player1);
     this.gameController.populatePlayerTwoBoard(this.gameController.player2);
+    this.renderScreen();
     this.updatePlayerBoard();
     this.updateOppBoard();
   }
