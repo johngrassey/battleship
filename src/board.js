@@ -39,6 +39,8 @@ class Board {
     });
   }
 
+  // TODO: Handle out of bounds and overlapping ships
+
   placeShip(x, y, ship, direction) {
     if (direction === "horizontal") {
       for (let i = 0; i < ship.length; i++) {
@@ -57,9 +59,11 @@ class Board {
     let value = this.board[x][y];
     if (value === "") {
       this.board[x][y] = "O";
+      return "miss";
     } else if (value in this.ships) {
       this.ships[value].shipHit();
       this.board[x][y] = "X";
+      return "hit";
     }
   }
 

@@ -18,11 +18,17 @@ class gameController {
   }
 
   gameTurn(x, y) {
-    this.inactivePlayer.board.receiveAttack(x, y);
+    const attackResult = this.inactivePlayer.board.receiveAttack(x, y);
+    if (attackResult === "miss") {
+      this.switchPlayer();
+      return "Miss!";
+    }
     if (this.activePlayer.board.allSunk()) {
-      console.log("Game Over");
+      this.switchPlayer();
+      return "Game Over!";
     }
     this.switchPlayer();
+    return "Hit!";
   }
 
   populatePlayerOneBoard(player1) {

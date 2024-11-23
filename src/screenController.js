@@ -46,9 +46,17 @@ class screenController {
   }
 
   playTurn(x, y) {
-    this.gameController.gameTurn(x, y);
+    const result = this.gameController.gameTurn(x, y);
+    this.updateMessage(result);
+    console.log(this.gameController.activePlayer);
     this.updatePlayerBoard();
     this.updateOppBoard();
+  }
+
+  updateMessage(message) {
+    const messageDiv = document.querySelector("#message");
+    messageDiv.innerHTML = "";
+    messageDiv.textContent = message;
   }
 
   startGame() {
