@@ -58,6 +58,50 @@ describe("Boardgame", () => {
     ]);
   });
 
+  test("places ship out of bounds horizontally on the board", () => {
+    board.placeShip(0, 9, board.ships.carrier, "horizontal");
+    expect(board.getPlayerBoard()).toEqual([
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+    ]);
+  });
+
+  test("places on another ship", () => {
+    board.placeShip(0, 2, board.ships.battleship, "horizontal");
+    board.placeShip(0, 0, board.ships.carrier, "horizontal");
+    expect(board.getPlayerBoard()).toEqual([
+      [
+        "",
+        "",
+        "battleship",
+        "battleship",
+        "battleship",
+        "battleship",
+        "",
+        "",
+        "",
+        "",
+      ],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+    ]);
+  });
+
   test("places ship vertically on the board", () => {
     board.placeShip(0, 0, board.ships.carrier, "vertical");
     expect(board.getPlayerBoard()).toEqual([

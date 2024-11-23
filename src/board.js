@@ -43,12 +43,21 @@ class Board {
 
   placeShip(x, y, ship, direction) {
     if (direction === "horizontal") {
+      if (y + ship.length > 10) {
+        return;
+      }
+      if (this.board[x].slice(y, y + ship.length).join("") !== "") {
+        return;
+      }
       for (let i = 0; i < ship.length; i++) {
         this.board[x][y + i] = ship.name;
       }
     }
 
     if (direction === "vertical") {
+      if (x + ship.length > 10) {
+        return;
+      }
       for (let i = 0; i < ship.length; i++) {
         this.board[x + i][y] = ship.name;
       }
