@@ -19,7 +19,7 @@ class gameController {
 
   gameTurn(x, y) {
     const attackResult = this.inactivePlayer.board.receiveAttack(x, y);
-    if (this.activePlayer.board.allSunk()) {
+    if (this.inactivePlayer.board.allSunk()) {
       return "Game Over!";
     }
     return attackResult;
