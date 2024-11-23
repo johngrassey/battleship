@@ -47,10 +47,12 @@ class screenController {
 
   playTurn(x, y) {
     const result = this.gameController.gameTurn(x, y);
+    this.updateOppBoard();
     this.updateMessage(result);
   }
 
   passTurn() {
+    this.gameController.switchPlayer();
     this.updateOppBoard();
     this.updatePlayerBoard();
     this.clearMessage();
