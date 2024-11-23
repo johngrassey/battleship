@@ -58,6 +58,14 @@ class Board {
       if (x + ship.length > 10) {
         return;
       }
+      if (
+        this.board
+          .slice(x, x + ship.length)
+          .map((row) => row[y])
+          .join("") !== ""
+      ) {
+        return;
+      }
       for (let i = 0; i < ship.length; i++) {
         this.board[x + i][y] = ship.name;
       }
