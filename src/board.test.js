@@ -17,7 +17,7 @@ describe("Boardgame", () => {
   });
 
   test("returns the board", () => {
-    expect(board.getBoard()).toEqual([
+    expect(board.getPlayerBoard()).toEqual([
       ["", "", "", "", "", "", "", "", "", ""],
       ["", "", "", "", "", "", "", "", "", ""],
       ["", "", "", "", "", "", "", "", "", ""],
@@ -33,7 +33,7 @@ describe("Boardgame", () => {
 
   test("places ship horizontally on the board", () => {
     board.placeShip(0, 0, board.ships.carrier, "horizontal");
-    expect(board.getBoard()).toEqual([
+    expect(board.getPlayerBoard()).toEqual([
       [
         "carrier",
         "carrier",
@@ -60,7 +60,7 @@ describe("Boardgame", () => {
 
   test("places ship vertically on the board", () => {
     board.placeShip(0, 0, board.ships.carrier, "vertical");
-    expect(board.getBoard()).toEqual([
+    expect(board.getPlayerBoard()).toEqual([
       ["carrier", "", "", "", "", "", "", "", "", ""],
       ["carrier", "", "", "", "", "", "", "", "", ""],
       ["carrier", "", "", "", "", "", "", "", "", ""],
@@ -76,7 +76,7 @@ describe("Boardgame", () => {
 
   test("attack blank square on the board", () => {
     board.receiveAttack(0, 0);
-    expect(board.getBoard()).toEqual([
+    expect(board.getPlayerBoard()).toEqual([
       ["O", "", "", "", "", "", "", "", "", ""],
       ["", "", "", "", "", "", "", "", "", ""],
       ["", "", "", "", "", "", "", "", "", ""],
@@ -93,7 +93,7 @@ describe("Boardgame", () => {
   test("attack ship on the board", () => {
     board.placeShip(0, 0, board.ships.carrier, "horizontal");
     board.receiveAttack(0, 0);
-    expect(board.getBoard()[0][0]).toEqual("X");
+    expect(board.getPlayerBoard()[0][0]).toEqual("X");
   });
 
   test("confirm all ships sunk", () => {
@@ -120,5 +120,23 @@ describe("Boardgame", () => {
     board.receiveAttack(4, 0);
     board.receiveAttack(4, 1);
     expect(board.allSunk()).toEqual(true);
+  });
+
+  test("retrieve inactive player board", () => {
+    board.placeShip(0, 0, board.ships.carrier, "horizontal");
+    board.receiveAttack(0, 0);
+    board.receiveAttack(1, 0);
+    expect(board.getOppBoard()).toEqual([
+      ["X", "", "", "", "", "", "", "", "", ""],
+      ["O", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+    ]);
   });
 });

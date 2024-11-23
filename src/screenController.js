@@ -6,7 +6,7 @@ class screenController {
   }
 
   updatePlayerBoard() {
-    const board = this.gameController.activePlayer.board.getBoard();
+    const board = this.gameController.activePlayer.board.getPlayerBoard();
     const boardDiv = document.querySelector("#playerboard .grid");
     boardDiv.innerHTML = "";
     board.forEach((row) => {
@@ -17,10 +17,8 @@ class screenController {
         cellDiv.classList.add("cell");
         if (cell.length > 1) {
           cellDiv.classList.add("ship");
-          cellDiv.textContent = cell;
-        } else {
-          cellDiv.textContent = cell;
         }
+        cellDiv.textContent = cell;
         rowDiv.appendChild(cellDiv);
       });
       boardDiv.appendChild(rowDiv);
@@ -28,7 +26,7 @@ class screenController {
   }
 
   updateOppBoard() {
-    const board = this.gameController.inactivePlayer.board.getBoard();
+    const board = this.gameController.inactivePlayer.board.getOppBoard();
     const boardDiv = document.querySelector("#oppboard .grid");
     boardDiv.innerHTML = "";
     board.forEach((row, rowIndex) => {
@@ -37,12 +35,7 @@ class screenController {
       row.forEach((cell, cellIndex) => {
         const cellDiv = document.createElement("div");
         cellDiv.classList.add("cell");
-        if (cell.length > 1) {
-          cellDiv.classList.add("ship");
-          cellDiv.textContent = cell;
-        } else {
-          cellDiv.textContent = cell;
-        }
+        cellDiv.textContent = cell;
         cellDiv.addEventListener("click", () => {
           this.playTurn(rowIndex, cellIndex);
         });

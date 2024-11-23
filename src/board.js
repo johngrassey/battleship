@@ -23,8 +23,20 @@ class Board {
     };
   }
 
-  getBoard() {
+  getPlayerBoard() {
     return this.board;
+  }
+
+  getOppBoard() {
+    return this.board.map((row) => {
+      return row.map((cell) => {
+        if (cell === "O" || cell === "X") {
+          return cell;
+        } else {
+          return "";
+        }
+      });
+    });
   }
 
   placeShip(x, y, ship, direction) {
