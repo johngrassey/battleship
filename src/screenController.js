@@ -48,15 +48,30 @@ class screenController {
   playTurn(x, y) {
     const result = this.gameController.gameTurn(x, y);
     this.updateMessage(result);
-    console.log(this.gameController.activePlayer);
-    this.updatePlayerBoard();
+  }
+
+  passTurn() {
     this.updateOppBoard();
+    this.updatePlayerBoard();
+    this.clearMessage();
   }
 
   updateMessage(message) {
+    const nextTurnBtn = document.querySelector("#nextturn");
     const messageDiv = document.querySelector("#message");
     messageDiv.innerHTML = "";
     messageDiv.textContent = message;
+    nextTurnBtn.addEventListener("click", () => {
+      this.passTurn();
+    });
+    nextTurnBtn.style.display = "block";
+  }
+
+  clearMessage() {
+    const messageDiv = document.querySelector("#message");
+    const nextTurnBtn = document.querySelector("#nextturn");
+    messageDiv.innerHTML = "";
+    nextTurnBtn.style.display = "none";
   }
 
   startGame() {
