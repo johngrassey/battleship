@@ -59,11 +59,14 @@ class Board {
     let value = this.board[x][y];
     if (value === "") {
       this.board[x][y] = "O";
-      return "miss";
+      return "Miss!";
     } else if (value in this.ships) {
       this.ships[value].shipHit();
       this.board[x][y] = "X";
-      return "hit";
+      if (this.ships[value].isSunk()) {
+        return `You sunk the ${value}!`;
+      }
+      return "Hit!";
     }
   }
 

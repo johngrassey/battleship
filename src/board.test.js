@@ -139,4 +139,13 @@ describe("Boardgame", () => {
       ["", "", "", "", "", "", "", "", "", ""],
     ]);
   });
+
+  test("attack ship and sink it", () => {
+    board.placeShip(0, 0, board.ships.carrier, "horizontal");
+    board.receiveAttack(0, 0);
+    board.receiveAttack(0, 1);
+    board.receiveAttack(0, 2);
+    board.receiveAttack(0, 3);
+    expect(board.receiveAttack(0, 4)).toEqual("You sunk the carrier!");
+  });
 });

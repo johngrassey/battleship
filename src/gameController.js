@@ -19,13 +19,10 @@ class gameController {
 
   gameTurn(x, y) {
     const attackResult = this.inactivePlayer.board.receiveAttack(x, y);
-    if (attackResult === "miss") {
-      return "Miss!";
-    }
     if (this.activePlayer.board.allSunk()) {
       return "Game Over!";
     }
-    return "Hit!";
+    return attackResult;
   }
 
   populatePlayerOneBoard(player1) {
