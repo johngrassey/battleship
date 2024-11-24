@@ -93,8 +93,8 @@ class screenController {
   }
 
   startGame() {
-    this.gameController.populatePlayerOneBoard(this.gameController.player1);
-    this.gameController.populatePlayerTwoBoard(this.gameController.player2);
+    this.gameController.populatePlayerBoard(this.gameController.player1);
+    this.gameController.populatePlayerBoard(this.gameController.player2);
     this.renderScreen();
     this.updatePlayerBoard();
     this.updateOppBoard();

@@ -86,3 +86,10 @@ h1 {
 #endturn {
   display: none;
 }
+
+/* DIALOG */
+
+dialog {
+  width: 100%;
+  height: 100%;
+}

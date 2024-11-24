@@ -25,20 +25,15 @@ class gameController {
     return attackResult;
   }
 
-  populatePlayerOneBoard(player1) {
-    player1.board.placeShip(0, 0, player1.board.ships.carrier, "horizontal");
-    player1.board.placeShip(1, 0, player1.board.ships.battleship, "horizontal");
-    player1.board.placeShip(2, 0, player1.board.ships.cruiser, "horizontal");
-    player1.board.placeShip(3, 0, player1.board.ships.submarine, "horizontal");
-    player1.board.placeShip(4, 0, player1.board.ships.destroyer, "horizontal");
-  }
-
-  populatePlayerTwoBoard(player1) {
-    player1.board.placeShip(0, 0, player1.board.ships.carrier, "vertical");
-    player1.board.placeShip(0, 1, player1.board.ships.battleship, "vertical");
-    player1.board.placeShip(0, 2, player1.board.ships.cruiser, "vertical");
-    player1.board.placeShip(0, 3, player1.board.ships.submarine, "vertical");
-    player1.board.placeShip(0, 4, player1.board.ships.destroyer, "vertical");
+  populatePlayerBoard(player) {
+    for (let ship in player.board.ships) {
+      while (!player.board.ships[ship].placed) {
+        const x = Math.floor(Math.random() * 10);
+        const y = Math.floor(Math.random() * 10);
+        const direction = Math.random() < 0.5 ? "horizontal" : "vertical";
+        player.board.placeShip(x, y, player.board.ships[ship], direction);
+      }
+    }
   }
 }
 
