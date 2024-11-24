@@ -118,20 +118,36 @@ class screenController {
       this.updatePlayerBoard();
       p1StartDiv.style.display = "none";
       p2StartDiv.style.display = "block";
+
+      const passDialog = document.querySelector("#passturn");
+      passDialog.showModal();
+
+      const passDialogBtn = document.querySelector("#passturnbtn");
+      passDialogBtn.addEventListener("click", () => {
+        passDialog.close();
+      });
     });
 
     p2StartBtn.addEventListener("click", () => {
       p2StartDiv.style.display = "none";
       oppBoard.style.display = "block";
       this.gameController.switchPlayer();
-      this.startGame();
+
+      const passDialog = document.querySelector("#passturn");
+      passDialog.showModal();
+
+      const passDialogBtn = document.querySelector("#passturnbtn");
+      passDialogBtn.addEventListener("click", () => {
+        this.startGame();
+        passDialog.close();
+      });
     });
   }
 
   startGame() {
+    this.renderScreen();
     this.updatePlayerBoard();
     this.updateOppBoard();
-    this.renderScreen();
   }
 
   initializeGame() {
