@@ -93,3 +93,12 @@ dialog {
   width: 100%;
   height: 100%;
 }
+
+/* GAME START */
+#playertwo-start {
+  display: none;
+}
+
+#oppboard {
+  display: none;
+}

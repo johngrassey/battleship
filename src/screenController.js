@@ -92,27 +92,50 @@ class screenController {
     passDialog.close();
   }
 
-  initializePlayer(player) {
-    const randomizeBtn = document.createElement("button");
-    const oppDiv = document.querySelector("#oppboard");
+  initializeBtns() {
+    const p1StartDiv = document.querySelector("#playerone-start");
+    const p2StartDiv = document.querySelector("#playertwo-start");
+    const oppBoard = document.querySelector("#oppboard");
 
-    randomizeBtn.textContent = "New Layout";
-    randomizeBtn.addEventListener("click", () => {
-      this.gameController.populatePlayerBoard(player);
+    const randomizePOne = document.querySelector("#p1randomize");
+    const randomizePTwo = document.querySelector("#p2randomize");
+
+    randomizePOne.addEventListener("click", () => {
+      this.gameController.populatePlayerBoard(this.gameController.player1);
       this.updatePlayerBoard();
     });
 
-    oppDiv.appendChild(randomizeBtn);
+    randomizePTwo.addEventListener("click", () => {
+      this.gameController.populatePlayerBoard(this.gameController.player2);
+      this.updatePlayerBoard();
+    });
+
+    const p1StartBtn = document.querySelector("#p1start");
+    const p2StartBtn = document.querySelector("#p2start");
+
+    p1StartBtn.addEventListener("click", () => {
+      this.gameController.switchPlayer();
+      this.updatePlayerBoard();
+      p1StartDiv.style.display = "none";
+      p2StartDiv.style.display = "block";
+    });
+
+    p2StartBtn.addEventListener("click", () => {
+      p2StartDiv.style.display = "none";
+      oppBoard.style.display = "block";
+      this.gameController.switchPlayer();
+      this.startGame();
+    });
   }
 
   startGame() {
-    this.gameController.populatePlayerBoard(this.gameController.player1);
-    this.gameController.populatePlayerBoard(this.gameController.player2);
-    this.renderScreen();
     this.updatePlayerBoard();
     this.updateOppBoard();
+    this.renderScreen();
+  }
 
-    this.initializePlayer(this.gameController.player1);
+  initializeGame() {
+    this.initializeBtns();
   }
 }
 
