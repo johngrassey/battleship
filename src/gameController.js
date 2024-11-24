@@ -26,6 +26,7 @@ class gameController {
   }
 
   populatePlayerBoard(player) {
+    player.board.clearBoard();
     for (let ship in player.board.ships) {
       while (!player.board.ships[ship].placed) {
         const x = Math.floor(Math.random() * 10);

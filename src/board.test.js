@@ -31,6 +31,29 @@ describe("Boardgame", () => {
     ]);
   });
 
+  test("clears the board", () => {
+    board.placeShip(0, 0, board.ships.carrier, "horizontal");
+    board.clearBoard();
+    expect(board.getPlayerBoard()).toEqual([
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+      ["", "", "", "", "", "", "", "", "", ""],
+    ]);
+  });
+
+  test("board clear also resets ship placement", () => {
+    board.placeShip(0, 0, board.ships.carrier, "horizontal");
+    board.clearBoard();
+    expect(board.ships.carrier.placed).toEqual(false);
+  });
+
   test("places ship horizontally on the board", () => {
     board.placeShip(0, 0, board.ships.carrier, "horizontal");
     expect(board.getPlayerBoard()).toEqual([

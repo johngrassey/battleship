@@ -92,12 +92,27 @@ class screenController {
     passDialog.close();
   }
 
+  initializePlayer(player) {
+    const randomizeBtn = document.createElement("button");
+    const oppDiv = document.querySelector("#oppboard");
+
+    randomizeBtn.textContent = "New Layout";
+    randomizeBtn.addEventListener("click", () => {
+      this.gameController.populatePlayerBoard(player);
+      this.updatePlayerBoard();
+    });
+
+    oppDiv.appendChild(randomizeBtn);
+  }
+
   startGame() {
     this.gameController.populatePlayerBoard(this.gameController.player1);
     this.gameController.populatePlayerBoard(this.gameController.player2);
     this.renderScreen();
     this.updatePlayerBoard();
     this.updateOppBoard();
+
+    this.initializePlayer(this.gameController.player1);
   }
 }
 
