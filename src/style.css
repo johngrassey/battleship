@@ -59,33 +59,15 @@ h1 {
   color: #0d0d0d;
 }
 
-/* BODY */
-
-/* BUTTONS */
-
-#playerone-start {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-button {
-  background-color: #1c242c;
+h3 {
   color: #fff;
-  border: none;
-  width: 100%;
-  padding: 10px 20px;
-  margin: 10px;
   font-family: "Quantico", sans-serif;
   font-weight: 700;
-  font-size: 1.5rem;
-  cursor: pointer;
+  font-size: 2rem;
+  text-align: center;
 }
 
-button:hover {
-  background-color: #0d0d0d;
-}
+/* BODY */
 
 body {
   background-color: #4c6173;
@@ -98,13 +80,47 @@ body {
   align-items: center;
 }
 
+/* INITIAL BUTTONS */
+
+#playerone-start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  background-color: #1c242c;
+  color: #fff;
+  border: none;
+  width: 300px;
+  padding: 10px 20px;
+  margin: 10px;
+  font-family: "Quantico", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0d0d0d;
+}
+
+/* GAME BOARD */
+
+#oppboard,
+#playerboard {
+  margin: 30px;
+}
+
 .grid {
-  background-color: #f5f5f5;
+  background-color: #dce8f2;
   display: flex;
   width: 500px;
   height: 500px;
   flex-direction: column;
-  margin: 50px;
+  margin: 25px 50px;
+  border: 3px solid #1c242c;
 }
 
 .row {
@@ -117,6 +133,10 @@ body {
   border: 1px solid #1c242c;
   color: #1c242c;
   text-align: center;
+}
+
+.ship {
+  background-color: #84a4bf;
 }
 
 #endturn {
