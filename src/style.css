@@ -82,7 +82,8 @@ body {
 
 /* INITIAL BUTTONS */
 
-#playerone-start {
+#playerone-start,
+#playertwo-start {
   display: flex;
   flex-direction: column;
   align-items: center;

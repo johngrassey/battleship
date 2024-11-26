@@ -18,6 +18,11 @@ class screenController {
         if (cell.length > 1) {
           cellDiv.classList.add("ship");
         }
+        if (cell === "X") {
+          cellDiv.classList.add("hit");
+        } else if (cell === "O") {
+          cellDiv.classList.add("miss");
+        }
         cellDiv.textContent = cell;
         rowDiv.appendChild(cellDiv);
       });
@@ -35,6 +40,11 @@ class screenController {
       row.forEach((cell, cellIndex) => {
         const cellDiv = document.createElement("div");
         cellDiv.classList.add("cell");
+        if (cell === "X") {
+          cellDiv.classList.add("hit");
+        } else if (cell === "O") {
+          cellDiv.classList.add("miss");
+        }
         cellDiv.textContent = cell;
         cellDiv.addEventListener("click", () => {
           this.playTurn(rowIndex, cellIndex);
@@ -117,7 +127,7 @@ class screenController {
       this.gameController.switchPlayer();
       this.updatePlayerBoard();
       p1StartDiv.style.display = "none";
-      p2StartDiv.style.display = "block";
+      p2StartDiv.style.display = "flex";
 
       const passDialog = document.querySelector("#passturn");
       passDialog.showModal();
