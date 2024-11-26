@@ -49,7 +49,6 @@ h6 {
 
 .header {
   background-color: #dce8f2;
-  font-family: "Quantico", sans-serif;
   font-weight: 700;
   font-size: 2rem;
   text-align: center;
@@ -61,7 +60,6 @@ h1 {
 
 h3 {
   color: #fff;
-  font-family: "Quantico", sans-serif;
   font-weight: 700;
   font-size: 2rem;
   text-align: center;
@@ -72,6 +70,7 @@ h3 {
 body {
   background-color: #4c6173;
   color: #fff;
+  font-family: "Quantico", sans-serif;
 }
 
 .content {
@@ -97,7 +96,7 @@ button {
   width: 300px;
   padding: 10px 20px;
   margin: 10px;
-  font-family: "Quantico", sans-serif;
+
   font-weight: 700;
   font-size: 1.5rem;
   cursor: pointer;
@@ -134,6 +133,9 @@ button:hover {
   border: 1px solid #1c242c;
   color: #1c242c;
   text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  align-content: center;
 }
 
 .ship {
@@ -142,6 +144,16 @@ button:hover {
 
 #endturn {
   display: none;
+}
+
+.hit {
+  background-color: #fdc0c0;
+  color: #a60505;
+}
+
+.miss {
+  background-color: #c0c0c0;
+  color: #0d0d0d;
 }
 
 /* DIALOG */
