@@ -23,7 +23,7 @@ class screenController {
         } else if (cell === "O") {
           cellDiv.classList.add("miss");
         }
-        cellDiv.textContent = cell;
+        cellDiv.textContent = cell.charAt(0);
         rowDiv.appendChild(cellDiv);
       });
       boardDiv.appendChild(rowDiv);
