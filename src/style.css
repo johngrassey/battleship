@@ -58,6 +58,10 @@ h1 {
   color: #0d0d0d;
 }
 
+h2 {
+  font-size: 2.5rem;
+}
+
 h3 {
   color: #fff;
   font-weight: 700;
@@ -77,6 +81,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 2%;
 }
 
 /* INITIAL BUTTONS */
@@ -110,7 +115,7 @@ button:hover {
 
 #oppboard,
 #playerboard {
-  margin: 30px;
+  margin: 15px 15px 0 15px;
 }
 
 .grid {
@@ -119,7 +124,7 @@ button:hover {
   width: 500px;
   height: 500px;
   flex-direction: column;
-  margin: 25px 50px;
+  margin: 10px 50px;
   border: 3px solid #1c242c;
 }
 
@@ -159,8 +164,43 @@ button:hover {
 /* DIALOG */
 
 dialog {
-  width: 100%;
-  height: 100%;
+  width: 500px;
+  height: 300px;
+  border: 3px solid #1c242c;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+dialog[open] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+dialog::backdrop {
+  background-color: #1c242c;
+}
+
+#passturnbtn {
+  margin-top: 20px;
+}
+
+/* MESSAGE */
+
+.messagesection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#message {
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 /* GAME START */
