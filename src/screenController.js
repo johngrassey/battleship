@@ -14,6 +14,8 @@ class screenController {
     this.nextTurnBtn = document.querySelector("#endturn");
     this.passDialog = document.querySelector("#passturn");
     this.passDialogBtn = document.querySelector("#passturnbtn");
+    this.randomizePOne = document.querySelector("#p1randomize");
+    this.randomizePTwo = document.querySelector("#p2randomize");
   }
 
   updatePlayerBoard() {
@@ -104,23 +106,19 @@ class screenController {
   }
 
   initializeBtns() {
-    const randomizePOne = document.querySelector("#p1randomize");
-    const randomizePTwo = document.querySelector("#p2randomize");
-
     this.gameController.populatePlayerBoard(this.gameController.player1);
-
     this.updatePlayerBoard();
 
     this.passDialogBtn.addEventListener("click", () => {
       this.passDialog.close();
     });
 
-    randomizePOne.addEventListener("click", () => {
+    this.randomizePOne.addEventListener("click", () => {
       this.gameController.populatePlayerBoard(this.gameController.player1);
       this.updatePlayerBoard();
     });
 
-    randomizePTwo.addEventListener("click", () => {
+    this.randomizePTwo.addEventListener("click", () => {
       this.gameController.populatePlayerBoard(this.gameController.player2);
       this.updatePlayerBoard();
     });
