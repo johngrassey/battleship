@@ -4,8 +4,8 @@ import { Ship } from "./ships";
 
 class gameController {
   constructor() {
-    this.player1 = new Player("Player 1", "human");
-    this.player2 = new Player("Player 2", "computer");
+    this.player1 = new Player("Player 1");
+    this.player2 = new Player("Player 2");
     this.activePlayer = this.player1;
     this.inactivePlayer = this.player2;
   }
