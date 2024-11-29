@@ -110,6 +110,13 @@ class screenController {
     const randomizePOne = document.querySelector("#p1randomize");
     const randomizePTwo = document.querySelector("#p2randomize");
 
+    const p1StartBtn = document.querySelector("#p1start");
+    const p2StartBtn = document.querySelector("#p2start");
+
+    this.gameController.populatePlayerBoard(this.gameController.player1);
+
+    this.updatePlayerBoard();
+
     randomizePOne.addEventListener("click", () => {
       this.gameController.populatePlayerBoard(this.gameController.player1);
       this.updatePlayerBoard();
@@ -120,11 +127,9 @@ class screenController {
       this.updatePlayerBoard();
     });
 
-    const p1StartBtn = document.querySelector("#p1start");
-    const p2StartBtn = document.querySelector("#p2start");
-
     p1StartBtn.addEventListener("click", () => {
       this.gameController.switchPlayer();
+      this.gameController.populatePlayerBoard(this.gameController.player2);
       this.updatePlayerBoard();
       p1StartDiv.style.display = "none";
       p2StartDiv.style.display = "flex";
