@@ -8,14 +8,10 @@ class screenController {
     this.p2StartDiv = document.querySelector("#playertwo-start");
     this.p1StartBtn = document.querySelector("#p1start");
     this.p2StartBtn = document.querySelector("#p2start");
-
     this.oppBoard = document.querySelector("#oppboard");
-
     this.playerBoardDiv = document.querySelector("#playerboard .grid");
     this.oppBoardDiv = document.querySelector("#oppboard .grid");
-
     this.nextTurnBtn = document.querySelector("#endturn");
-
     this.passDialog = document.querySelector("#passturn");
     this.passDialogBtn = document.querySelector("#passturnbtn");
   }
@@ -115,6 +111,10 @@ class screenController {
 
     this.updatePlayerBoard();
 
+    this.passDialogBtn.addEventListener("click", () => {
+      this.passDialog.close();
+    });
+
     randomizePOne.addEventListener("click", () => {
       this.gameController.populatePlayerBoard(this.gameController.player1);
       this.updatePlayerBoard();
@@ -133,10 +133,6 @@ class screenController {
       this.p2StartDiv.style.display = "flex";
 
       this.passDialog.showModal();
-
-      this.passDialogBtn.addEventListener("click", () => {
-        this.passDialog.close();
-      });
     });
 
     this.p2StartBtn.addEventListener("click", () => {
@@ -144,12 +140,8 @@ class screenController {
       this.oppBoard.style.display = "block";
       this.gameController.switchPlayer();
 
+      this.startGame();
       this.passDialog.showModal();
-
-      this.passDialogBtn.addEventListener("click", () => {
-        this.startGame();
-        this.passDialog.close();
-      });
     });
   }
 
