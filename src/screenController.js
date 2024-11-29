@@ -77,7 +77,6 @@ class screenController {
     this.updateOppBoard();
     this.updatePlayerBoard();
     this.clearMessage();
-    this.closeModal();
   }
 
   updateMessage(message) {
@@ -98,11 +97,11 @@ class screenController {
     this.passDialog.close();
   }
 
-  renderScreen() {
+  addPassTurnListener() {
     this.passDialogBtn.addEventListener("click", () => {
       this.passTurn();
     });
-    this.passDialog.close();
+    this.closeModal();
   }
 
   initializeBtns() {
@@ -138,15 +137,11 @@ class screenController {
       this.oppBoard.style.display = "block";
       this.gameController.switchPlayer();
 
-      this.startGame();
+      this.addPassTurnListener();
+      this.updatePlayerBoard();
+      this.updateOppBoard();
       this.passDialog.showModal();
     });
-  }
-
-  startGame() {
-    this.renderScreen();
-    this.updatePlayerBoard();
-    this.updateOppBoard();
   }
 
   initializeGame() {
