@@ -42,7 +42,7 @@ class screenController {
     });
   }
 
-  updateOppBoard() {
+  updateOppBoard(postTurn) {
     const board = this.gameController.inactivePlayer.board.getOppBoard();
     this.oppBoardDiv.innerHTML = "";
     board.forEach((row, rowIndex) => {
@@ -57,9 +57,11 @@ class screenController {
           cellDiv.classList.add("miss");
         }
         cellDiv.textContent = cell;
-        cellDiv.addEventListener("click", () => {
-          this.playTurn(rowIndex, cellIndex);
-        });
+        if (!postTurn) {
+          cellDiv.addEventListener("click", () => {
+            this.playTurn(rowIndex, cellIndex);
+          });
+        }
         rowDiv.appendChild(cellDiv);
       });
       this.oppBoardDiv.appendChild(rowDiv);
@@ -68,13 +70,13 @@ class screenController {
 
   playTurn(x, y) {
     const result = this.gameController.gameTurn(x, y);
-    this.updateOppBoard();
+    this.updateOppBoard(true);
     this.updateMessage(result);
   }
 
   passTurn() {
     this.gameController.switchPlayer();
-    this.updateOppBoard();
+    this.updateOppBoard(false);
     this.updatePlayerBoard();
     this.clearMessage();
   }
@@ -139,7 +141,7 @@ class screenController {
 
       this.addPassTurnListener();
       this.updatePlayerBoard();
-      this.updateOppBoard();
+      this.updateOppBoard(false);
       this.passDialog.showModal();
     });
   }
