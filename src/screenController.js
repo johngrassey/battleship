@@ -3,12 +3,26 @@ import { gameController } from "./gameController.js";
 class screenController {
   constructor() {
     this.gameController = new gameController();
+    this.messageDiv = document.querySelector("#message");
+    this.p1StartDiv = document.querySelector("#playerone-start");
+    this.p2StartDiv = document.querySelector("#playertwo-start");
+    this.p1StartBtn = document.querySelector("#p1start");
+    this.p2StartBtn = document.querySelector("#p2start");
+
+    this.oppBoard = document.querySelector("#oppboard");
+
+    this.playerBoardDiv = document.querySelector("#playerboard .grid");
+    this.oppBoardDiv = document.querySelector("#oppboard .grid");
+
+    this.nextTurnBtn = document.querySelector("#endturn");
+
+    this.passDialog = document.querySelector("#passturn");
+    this.passDialogBtn = document.querySelector("#passturnbtn");
   }
 
   updatePlayerBoard() {
     const board = this.gameController.activePlayer.board.getPlayerBoard();
-    const boardDiv = document.querySelector("#playerboard .grid");
-    boardDiv.innerHTML = "";
+    this.playerBoardDiv.innerHTML = "";
     board.forEach((row) => {
       const rowDiv = document.createElement("div");
       rowDiv.classList.add("row");
@@ -26,14 +40,13 @@ class screenController {
         cellDiv.textContent = cell.charAt(0);
         rowDiv.appendChild(cellDiv);
       });
-      boardDiv.appendChild(rowDiv);
+      this.playerBoardDiv.appendChild(rowDiv);
     });
   }
 
   updateOppBoard() {
     const board = this.gameController.inactivePlayer.board.getOppBoard();
-    const boardDiv = document.querySelector("#oppboard .grid");
-    boardDiv.innerHTML = "";
+    this.oppBoardDiv.innerHTML = "";
     board.forEach((row, rowIndex) => {
       const rowDiv = document.createElement("div");
       rowDiv.classList.add("row");
@@ -51,7 +64,7 @@ class screenController {
         });
         rowDiv.appendChild(cellDiv);
       });
-      boardDiv.appendChild(rowDiv);
+      this.oppBoardDiv.appendChild(rowDiv);
     });
   }
 
@@ -70,48 +83,33 @@ class screenController {
   }
 
   updateMessage(message) {
-    const nextTurnBtn = document.querySelector("#endturn");
-    const messageDiv = document.querySelector("#message");
-    const passDialog = document.querySelector("#passturn");
-    messageDiv.innerHTML = "";
-    messageDiv.textContent = message;
-    nextTurnBtn.addEventListener("click", () => {
-      passDialog.showModal();
+    this.messageDiv.innerHTML = "";
+    this.messageDiv.textContent = message;
+    this.nextTurnBtn.addEventListener("click", () => {
+      this.passDialog.showModal();
     });
-    nextTurnBtn.style.display = "block";
+    this.nextTurnBtn.style.display = "block";
   }
 
   clearMessage() {
-    const messageDiv = document.querySelector("#message");
-    const nextTurnBtn = document.querySelector("#endturn");
-    messageDiv.innerHTML = "";
-    nextTurnBtn.style.display = "none";
+    this.messageDiv.innerHTML = "";
+    this.nextTurnBtn.style.display = "none";
   }
 
   closeModal() {
-    const passDialog = document.querySelector("#passturn");
-    passDialog.close();
+    this.passDialog.close();
   }
 
   renderScreen() {
-    const passDialog = document.querySelector("#passturn");
-    const passDialogBtn = document.querySelector("#passturnbtn");
-    passDialogBtn.addEventListener("click", () => {
+    this.passDialogBtn.addEventListener("click", () => {
       this.passTurn();
     });
-    passDialog.close();
+    this.passDialog.close();
   }
 
   initializeBtns() {
-    const p1StartDiv = document.querySelector("#playerone-start");
-    const p2StartDiv = document.querySelector("#playertwo-start");
-    const oppBoard = document.querySelector("#oppboard");
-
     const randomizePOne = document.querySelector("#p1randomize");
     const randomizePTwo = document.querySelector("#p2randomize");
-
-    const p1StartBtn = document.querySelector("#p1start");
-    const p2StartBtn = document.querySelector("#p2start");
 
     this.gameController.populatePlayerBoard(this.gameController.player1);
 
@@ -127,34 +125,30 @@ class screenController {
       this.updatePlayerBoard();
     });
 
-    p1StartBtn.addEventListener("click", () => {
+    this.p1StartBtn.addEventListener("click", () => {
       this.gameController.switchPlayer();
       this.gameController.populatePlayerBoard(this.gameController.player2);
       this.updatePlayerBoard();
-      p1StartDiv.style.display = "none";
-      p2StartDiv.style.display = "flex";
+      this.p1StartDiv.style.display = "none";
+      this.p2StartDiv.style.display = "flex";
 
-      const passDialog = document.querySelector("#passturn");
-      passDialog.showModal();
+      this.passDialog.showModal();
 
-      const passDialogBtn = document.querySelector("#passturnbtn");
-      passDialogBtn.addEventListener("click", () => {
-        passDialog.close();
+      this.passDialogBtn.addEventListener("click", () => {
+        this.passDialog.close();
       });
     });
 
-    p2StartBtn.addEventListener("click", () => {
-      p2StartDiv.style.display = "none";
-      oppBoard.style.display = "block";
+    this.p2StartBtn.addEventListener("click", () => {
+      this.p2StartDiv.style.display = "none";
+      this.oppBoard.style.display = "block";
       this.gameController.switchPlayer();
 
-      const passDialog = document.querySelector("#passturn");
-      passDialog.showModal();
+      this.passDialog.showModal();
 
-      const passDialogBtn = document.querySelector("#passturnbtn");
-      passDialogBtn.addEventListener("click", () => {
+      this.passDialogBtn.addEventListener("click", () => {
         this.startGame();
-        passDialog.close();
+        this.passDialog.close();
       });
     });
   }
